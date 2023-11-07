@@ -12,7 +12,7 @@ import {
   import { useEffect, useState } from 'react';
 
 
-export default function BodyList({data,refreshData }) {
+export default function BodyList({data,refreshData,setSelectedItem }) {
 
     const [selectedId, setSelectedId] = useState();
     const [refreshing, setRefreshing] = useState(false);
@@ -35,7 +35,7 @@ export default function BodyList({data,refreshData }) {
         const color = index === selectedId ? 'black' : 'white';
     
         return (
-            <TouchableOpacity onPress={()=>{setSelectedId(index);console.log(index)}} style={[ {backgroundColor},styles.container]}>
+            <TouchableOpacity onPress={()=>{setSelectedId(index);setSelectedItem(item.symbol)}} style={[ {backgroundColor},styles.container]}>
                 <View>
                     <Text style={[styles.title, {color: color},{fontWeight:"bold"}]}>{item.symbol.replace('USDT', '')}</Text>
                     <Text style={[styles.title, {color: color}]}>{item.symbol}</Text>

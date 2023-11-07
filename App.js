@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import BodyList from './components/BodyList';
 import TitleHeader from './components/TitleHeader';
+import Details from './components/Details';
 
 export default function App() {
   const [allData, setAllData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
 
   const setDataSearchFunction = (data) => {
     console.log(data);
@@ -41,13 +43,19 @@ export default function App() {
       console.error('Error al actualizar los datos:', error);
     }
   };
+  if (selectedItem == null) {
+    return (
+      <View style={styles.container}>
+        <TitleHeader setDataSearchFuntion={setDataSearchFunction}></TitleHeader>
+        <BodyList data={allData} refreshData={refreshData} setSelectedItem={setSelectedItem}></BodyList>
+      </View>
+    );
+  }else {
+    return (
+    <Details setSelectedItem={setSelectedItem} selectedItem={selectedItem} data={allData}></Details>
+    )
+  }
 
-  return (
-    <View style={styles.container}>
-      <TitleHeader setDataSearchFuntion={setDataSearchFunction}></TitleHeader>
-      <BodyList data={allData} refreshData={refreshData}></BodyList>
-    </View>
-  );
 }
 
 const styles = StyleSheet.create({
