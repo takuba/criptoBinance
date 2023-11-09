@@ -4,11 +4,13 @@ import { StyleSheet, Text, View } from 'react-native';
 import BodyList from './components/BodyList';
 import TitleHeader from './components/TitleHeader';
 import Details from './components/Details';
+import Grafico from './components/Grafico';
 
 export default function App() {
   const [allData, setAllData] = useState([]);
   const [originalData, setOriginalData] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [nameItemForGraphits, setNameItemForGraphits] = useState(null);
 
   const setDataSearchFunction = (data) => {
     console.log(data);
@@ -52,7 +54,8 @@ export default function App() {
     );
   }else {
     return (
-    <Details setSelectedItem={setSelectedItem} selectedItem={selectedItem} data={allData}></Details>
+    // <Details setSelectedItem={setSelectedItem} selectedItem={selectedItem} data={allData}></Details>
+    <Grafico setSelectedItem={setSelectedItem} selectedItem={selectedItem} dataRecived={allData}></Grafico>
     )
   }
 
